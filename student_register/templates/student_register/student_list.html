@@ -2,6 +2,25 @@
 
 {% block content %}
 
-<p>Student List</p>
+<table class="table table-borderless">
+    <thead class="border-bottem font-weight-bold">
+        <tr>
+            <td>Full name</td>
+            <td>Faculty</td>
+            <td>Student Code</td>
+            <td>Department</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in student_list %}
+            <tr>
+                <td>{{student.fullname}}</td>
+                <td>{{student.student_code}}</td>
+                <td>{{student.faculty}}</td>
+                <td>{{student.department}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock content %}

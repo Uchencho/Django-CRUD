@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from .forms import StudentForm
+from .models import Student
 
 # Create your views here.
 def student_list(request):
     """
     
     """
-    return render(request, "student_register/student_list.html")
+    context = {'student_list': Student.objects.all()}
+    return render(request, "student_register/student_list.html", context)
 
 def student_form(request):
     """
@@ -25,4 +27,3 @@ def student_delete(request):
     Delete function
     """
     return
-
