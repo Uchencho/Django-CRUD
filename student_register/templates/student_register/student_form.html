@@ -1,7 +1,9 @@
 {% extends "student_register/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-
-<p>Show Django Form to implement crud operations</p>
-
+<form action="" method="POST" autocomplete="off">
+    {% csrf_token %}
+    {{ form|crispy }}
+</form>
 {% endblock content %}
