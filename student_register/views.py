@@ -10,20 +10,30 @@ def student_list(request):
     context = {'student_list': Student.objects.all()}
     return render(request, "student_register/student_list.html", context)
 
-def student_form(request):
+def student_form(request, id=0):
     """
     Insert and update function
     """
     if request.method == "GET":
-        form = StudentForm()
+        if id==0:
+            form = StudentForm()
+        else:
+            the_id = Student.objects.get(pk=id)
+            form = StudentForm(instance=the_id)
         return render(request, "student_register/student_form.html", {'form' : form})
     else:
-        form = StudentForm(request.POST)
+        if id == 0:
+            form = StudentForm(request.POST)
+        else:
+            the_id = Student.objects.get(pk=id)
+            form = StudentForm(request.POST, instance=the_id)
         if form.is_valid():
             form.save()
         return redirect('/list')
-def student_delete(request):
+def student_delete(request, id):
     """
     Delete function
     """
-    return
+    the_id = Student.objects.get(pk=id)
+    the_id.delete()
+    return redirect('/list')

@@ -9,6 +9,11 @@
             <td>Faculty</td>
             <td>Student Code</td>
             <td>Department</td>
+            <td>
+                <a href="{% url 'student_insert' %}" class="btn btn-outline-sucess">
+                    <i class="fas fa-plus">Add New</i>
+                </a>
+            </td>
         </tr>
     </thead>
     <tbody>
@@ -18,6 +23,19 @@
                 <td>{{student.student_code}}</td>
                 <td>{{student.faculty}}</td>
                 <td>{{student.department}}</td>
+                <td>
+                    <a href="{% url 'student_update' student.id %}" class="btn text-secondary px-0">
+                        <i class="far fa-edit fa-lag"></i>
+                    </a>
+                    <form action="{% url 'student_delete' student.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button class="submit btn">
+                            <i class="far fa-trash-alt fa-lg text-danger float-right">
+
+                            </i>
+                        </button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
     </tbody>
